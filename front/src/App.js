@@ -3,6 +3,7 @@ import './App.css';
 import 'fontsource-roboto';
 import 'typeface-roboto-slab';
 import { Typography, Divider, Paper, Container } from '@material-ui/core';
+import ReadBeach from "./selection/ReadBeach"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           </Typography>
           <code>Made by Harry Randazzo (Razzle-Dazzle)</code>
           <Divider style={{margin:'1rem'}}/>
+          <ReadBeach />
         </Paper>
       </Container>
     </div>
