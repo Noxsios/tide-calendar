@@ -1,24 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'fontsource-roboto';
+import 'typeface-roboto-slab';
+import { Typography, Divider, Paper, Container } from '@material-ui/core';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Container maxWidth="md" className="mainContainer">
+        <Paper elevation={5} className="mainPaper">
+          <Typography variant="h6">
+            Tide Calendar Full-stack App
+          </Typography>
+          <code>Made by Harry Randazzo (Razzle-Dazzle)</code>
+          <Divider style={{margin:'1rem'}}/>
+        </Paper>
+      </Container>
     </div>
   );
 }
