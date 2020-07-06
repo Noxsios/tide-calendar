@@ -2,7 +2,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Day from "./Day";
+// import Day from "./Day";
+import Divider from "@material-ui/core/Divider"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +40,24 @@ const CalGrid = () => {
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
+        <Grid item xs>
+          <Paper
+            onMouseEnter={() => {
+              setshadowSun(15);
+            }}
+            onMouseLeave={() => {
+              setshadowSun(3);
+            }}
+            elevation={shadowSun}
+            className={classes.days}
+            id="Sunday-card"
+            onClick={(e) => {
+              setDay(e.target.id.split("-")[0]);
+            }}
+          >
+            Sun
+          </Paper>
+        </Grid>
         <Grid item xs>
           <Paper
             onMouseEnter={() => {
@@ -147,27 +166,10 @@ const CalGrid = () => {
             Sat
           </Paper>
         </Grid>
-        <Grid item xs>
-          <Paper
-            onMouseEnter={() => {
-              setshadowSun(15);
-            }}
-            onMouseLeave={() => {
-              setshadowSun(3);
-            }}
-            elevation={shadowSun}
-            className={classes.days}
-            id="Sunday-card"
-            onClick={(e) => {
-              setDay(e.target.id.split("-")[0]);
-            }}
-          >
-            Sun
-          </Paper>
-        </Grid>
       </Grid>
-      <Paper elevtion={10} className={classes.paper}>
-        Date selected is {Day}
+      <Divider style={{ margin: "1rem" }} />
+      <Paper elevation={10} className={classes.paper}>
+        Day selected is {Day}
       </Paper>
       {/* <Grid container spacing={3}>
           <Grid item xs>
