@@ -11,10 +11,9 @@ import { createStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import { IconButton, withStyles } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import eachDayOfInterval from "date-fns/eachDayOfInterval";
+import CalGrid from "../calendar/CalGrid"
 
 class CustomElements extends PureComponent {
   state = {
@@ -67,18 +66,24 @@ class CustomElements extends PureComponent {
 
   render() {
     const { selectedDate } = this.state;
+    const start = startOfWeek(selectedDate);
+    const end = endOfWeek(selectedDate);
+
+    const week = eachDayOfInterval({start:start,end:end}).map(ele => ele.getDate())
+    const dates = eachDayOfInterval({ start: start, end: end });
 
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Grid container justify="space-around" style={{ margin: "1rem" }}>
+        <Grid container justify="center" style={{ margin: "1rem" }}>
           <DatePicker
-            label="Week picker"
+            label="Choose a week to view"
             value={selectedDate}
             onChange={this.handleWeekChange}
             renderDay={this.renderWrappedWeekDay}
             labelFunc={this.formatWeekSelectLabel}
           />
         </Grid>
+        <CalGrid week={week} dates={dates} beach={this.props.beach} />
       </MuiPickersUtilsProvider>
     );
   }

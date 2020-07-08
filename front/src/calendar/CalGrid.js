@@ -2,29 +2,39 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-// import Day from "./Day";
-import Divider from "@material-ui/core/Divider"
+import CalDay from "./Day";
+import Divider from "@material-ui/core/Divider";
+
+import GlobalContext from "../GlobalContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   days: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: "center",
+    width: "auto",
     color: theme.palette.text.secondary,
+    transition: "transform 0.5s",
+    height: "30rem",
+    overflow: "hidden",
     "&:hover": {
-      cursor: "pointer",
+      overflow: "scroll",
+      overflowX: "hidden",
+    },
+    "&::-webkit-scrollbar": {
+      display: "none",
     },
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
 }));
 
-const CalGrid = () => {
+const CalGrid = ({ week, dates, beach }) => {
   const classes = useStyles();
 
   const [shadowMon, setshadowMon] = React.useState(3);
@@ -35,10 +45,30 @@ const CalGrid = () => {
   const [shadowSat, setshadowSat] = React.useState(3);
   const [shadowSun, setshadowSun] = React.useState(3);
 
-  const [Day, setDay] = React.useState('______');
+  const [selectTime, setselectTime] = React.useState("______");
+
+  const [dayNum, setdayNum] = React.useState("");
+  const [Dates, setDates] = React.useState("");
+
+  React.useEffect(() => {
+    setdayNum(week);
+    setDates(dates);
+  }, [week, dates]);
+
+  const { global, setGlobal } = React.useContext(GlobalContext);
 
   return (
     <div className={classes.root}>
+      <Divider style={{ margin: "1rem" }} />
+      <Paper elevation={10} className={classes.paper}>
+        Time selected is {selectTime}
+        <br />
+        Beach selected is {JSON.stringify(beach)}
+        <br />
+        {/* <button onClick={() => setGlobal({...global,changed:'hello'})}>CLICK ME!</button>
+        Color from context is {JSON.stringify(global)} */}
+      </Paper>
+      <Divider style={{ margin: "1rem" }} />
       <Grid container spacing={1}>
         <Grid item xs>
           <Paper
@@ -52,10 +82,14 @@ const CalGrid = () => {
             className={classes.days}
             id="Sunday-card"
             onClick={(e) => {
-              setDay(e.target.id.split("-")[0]);
+              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
+              // setselectTime(e.target.id.split("-")[0]);
             }}
           >
             Sun
+            <Divider />
+            {dayNum[0]}
+            <CalDay date={Dates[0]} />
           </Paper>
         </Grid>
         <Grid item xs>
@@ -70,10 +104,13 @@ const CalGrid = () => {
             className={classes.days}
             id="Monday-card"
             onClick={(e) => {
-              setDay(e.target.id.split("-")[0]);
+              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
             }}
           >
             Mon
+            <Divider />
+            {dayNum[1]}
+            <CalDay date={Dates[1]} />
           </Paper>
         </Grid>
         <Grid item xs>
@@ -88,10 +125,13 @@ const CalGrid = () => {
             className={classes.days}
             id="Tuesday-card"
             onClick={(e) => {
-              setDay(e.target.id.split("-")[0]);
+              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
             }}
           >
             Tues
+            <Divider />
+            {dayNum[2]}
+            <CalDay date={Dates[2]} />
           </Paper>
         </Grid>
         <Grid item xs>
@@ -106,10 +146,13 @@ const CalGrid = () => {
             className={classes.days}
             id="Wednesday-card"
             onClick={(e) => {
-              setDay(e.target.id.split("-")[0]);
+              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
             }}
           >
             Wed
+            <Divider />
+            {dayNum[3]}
+            <CalDay date={Dates[3]} />
           </Paper>
         </Grid>
         <Grid item xs>
@@ -124,10 +167,13 @@ const CalGrid = () => {
             className={classes.days}
             id="Thursday-card"
             onClick={(e) => {
-              setDay(e.target.id.split("-")[0]);
+              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
             }}
           >
             Thurs
+            <Divider />
+            {dayNum[4]}
+            <CalDay date={Dates[4]} />
           </Paper>
         </Grid>
         <Grid item xs>
@@ -142,10 +188,13 @@ const CalGrid = () => {
             className={classes.days}
             id="Friday-card"
             onClick={(e) => {
-              setDay(e.target.id.split("-")[0]);
+              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
             }}
           >
             Fri
+            <Divider />
+            {dayNum[5]}
+            <CalDay date={Dates[5]} />
           </Paper>
         </Grid>
         <Grid item xs>
@@ -160,17 +209,16 @@ const CalGrid = () => {
             className={classes.days}
             id="Saturday-card"
             onClick={(e) => {
-              setDay(e.target.id.split("-")[0]);
+              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
             }}
           >
             Sat
+            <Divider />
+            {dayNum[6]}
+            <CalDay date={Dates[6]} />
           </Paper>
         </Grid>
       </Grid>
-      <Divider style={{ margin: "1rem" }} />
-      <Paper elevation={10} className={classes.paper}>
-        Day selected is {Day}
-      </Paper>
       {/* <Grid container spacing={3}>
           <Grid item xs>
             <Paper className={classes.days}>xs</Paper>

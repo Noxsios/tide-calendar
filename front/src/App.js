@@ -1,26 +1,29 @@
-import React from 'react';
-import './App.css';
-import 'fontsource-roboto';
-import 'typeface-roboto-slab';
-import { Typography, Divider, Paper, Container } from '@material-ui/core';
-import ReadBeach from "./selection/ReadBeach"
-import CalGrid from './calendar/CalGrid';
-import SelectDate from './selection/SelectDate'
+import React from "react";
+import "./App.css";
+import "fontsource-roboto";
+import "typeface-roboto-slab";
+import { Typography, Divider, Paper, Container, Grid } from "@material-ui/core";
+import GlobalContext from "./GlobalContext";
+import SearchBeach from "./selection/SearchBeach";
 
 function App() {
+  const [global, setGlobal] = React.useState({default:'default'});
+  const value = { global, setGlobal };
   return (
     <div>
-      <Container maxWidth="lg" className="mainContainer">
-        <Paper elevation={5} className="mainPaper">
-          <Typography variant="h6">Tide Calendar Full-stack App</Typography>
-          <code>Made by Harry Randazzo (Razzle-Dazzle)</code>
-          <Divider style={{ margin: "1rem" }} />
-          <ReadBeach />
-          <Divider style={{ margin: "1rem" }} />
-          <CalGrid />
-          <SelectDate />
-        </Paper>
-      </Container>
+      <GlobalContext.Provider value={value}>
+        <Container maxWidth="xl" className="mainContainer">
+          <Paper elevation={5} className="mainPaper">
+            <Typography variant="h6">Tide Calendar Full-stack App</Typography>
+            <code>Made by Harry Randazzo (Razzle-Dazzle)</code>
+            <Divider style={{ margin: "1rem" }} />
+            <Grid container justify="center">
+              <SearchBeach />
+            </Grid>
+            <Divider style={{ margin: "1rem" }} />
+          </Paper>
+        </Container>
+      </GlobalContext.Provider>
     </div>
   );
 }

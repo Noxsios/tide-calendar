@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 var MongoClient = require("mongodb").MongoClient;
 
-MongoClient.connect("mongodb://localhost:27017/calendar", {
+MongoClient.connect("mongodb://127.0.0.1:27017/calendar", {
   useUnifiedTopology: true,
 })
   .then((client) => {
@@ -25,7 +25,7 @@ MongoClient.connect("mongodb://localhost:27017/calendar", {
       calCollection.find().toArray((err, result) => {
         if (err) throw err;
 
-        // console.log(result)
+        console.log(result)
         res.send(result);
       });
     });

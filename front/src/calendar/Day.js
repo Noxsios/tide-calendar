@@ -1,23 +1,52 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
+import addMinutes from "date-fns/addMinutes";
 
-const Day = ({ day }) => {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  halfDiv: {
+    backgroundColor: "#cd4138",
+    color: "#050101",
+    height: "25px",
+    marginTop: "5px",
+    overflow: "hidden",
+    paddding: "0",
+    borderRadius: "5px",
+    "&:hover": {
+      color: "#f0c8c5",
+      cursor: "pointer",
+      backgroundColor: "#822721",
+    },
+  },
+}));
+
+let half_hour_array = [];
+
+for (let i = 0; i <= 47; i++) {
+  half_hour_array.push(i);
+}
+
+const Day = ({ date }) => {
+  const classes = useStyles();
+
   return (
     <div>
-      <Paper elevation={20}>
-        {day}
-        <hr />
-        Percolator cream, breve id affogato, coffee caffeine acerbic, coffee
-        doppio, ristretto sit espresso chicory percolator instant body cortado.
-        A irish, sugar, half and half et cinnamon iced grinder milk java cup bar
-        cortado. Organic galão, doppio, americano, robust, fair trade lungo,
-        half and half sugar kopi-luwak frappuccino white whipped and pumpkin
-        spice spoon aged. Siphon ristretto grounds froth decaffeinated variety
-        mocha rich pumpkin spice sit plunger pot, grounds, turkish foam, single
-        origin cinnamon single shot, aftertaste french press foam eu half and
-        half robusta caffeine. Eu, milk to go dark aftertaste cortado milk, body
-        medium crema aged cup robusta.
-      </Paper>
+      {half_hour_array.map((ele) => (
+        <div
+          className={classes.halfDiv}
+          id={JSON.stringify(addMinutes(date, 30 * ele))}
+        >
+          {JSON.stringify(
+            addMinutes(date, 30 * ele)
+              .toLocaleTimeString()
+              .replace(/:\d+ /, " ")
+          )
+            .replace('"', "")
+            .replace('"', "")}
+        </div>
+      ))}
     </div>
   );
 };
