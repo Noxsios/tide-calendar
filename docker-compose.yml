@@ -1,0 +1,40 @@
+version: "2"
+services:
+    front:
+        image: noxsios/tide-calendar
+        restart: always
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./front:/front
+            - /front/node_modules
+        links:
+            - back
+        networks:
+            - tidenetwork
+    back:
+        image: noxsios/tide-calendar-back
+        restart: always
+        ports:
+            - "9002:9002"
+        volumes:
+            - ./back:/back
+            - /back/node_modules
+        depends_on:
+            - mongodb
+        networks:
+            - tidenetwork
+    mongodb:
+        image: mongo
+        restart: always
+        container_name: mongodb
+        volumes:
+            - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+        ports:
+            - 27017:27017
+        command: mongod --noauth --smallfiles
+        networks:
+            - tidenetwork
+networks:
+    tidenetwork:
+        driver: bridge

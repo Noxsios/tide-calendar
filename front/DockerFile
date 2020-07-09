@@ -13,5 +13,8 @@ RUN yarn install
 # add app
 COPY . ./
 
+# What port will the container talk to the outside world with once created?
+EXPOSE 3000
+
 # start app
 CMD ["npm", "start"]
