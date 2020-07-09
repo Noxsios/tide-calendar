@@ -14,6 +14,8 @@ import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";
 import CalGrid from "../calendar/CalGrid"
+import Tides from "./Tides"
+import Divider from "@material-ui/core/Divider"
 
 class CustomElements extends PureComponent {
   state = {
@@ -83,6 +85,8 @@ class CustomElements extends PureComponent {
             labelFunc={this.formatWeekSelectLabel}
           />
         </Grid>
+        <Tides />
+        <Divider style={{ margin: "1rem" }} />
         <CalGrid week={week} dates={dates} beach={this.props.beach} />
       </MuiPickersUtilsProvider>
     );

@@ -25,12 +25,20 @@ let exampleEvent = {
 };
 
 let examplePerson = {
-  id: `integer`,
-  lastName: "exampleLast",
-  firstName: "exampleFirst",
+  last_name: "exampleLast",
+  first_name: "exampleFirst",
   email: "exampleEmail",
   phone: "examplePhone",
 };
+
+db.person.insert(
+  {
+    last_name: "exampleLast",
+    first_name: "exampleFirst",
+    email: "exampleEmail",
+    phone: "examplePhone",
+  }
+)
 
 let exampleBeach = {
   id: `integer`,

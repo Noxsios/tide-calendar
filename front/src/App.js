@@ -5,9 +5,15 @@ import "typeface-roboto-slab";
 import { Typography, Divider, Paper, Container, Grid } from "@material-ui/core";
 import GlobalContext from "./GlobalContext";
 import SearchBeach from "./selection/SearchBeach";
+import EventList from "./calendar/EventList";
+import PeopleList from "./calendar/PeopleList"
+import Tides from "./selection/Tides"
 
 function App() {
-  const [global, setGlobal] = React.useState({default:'default'});
+  const [global, setGlobal] = React.useState({
+    default: "default",
+    beach: "NONE",
+  });
   const value = { global, setGlobal };
   return (
     <div>
@@ -21,6 +27,10 @@ function App() {
               <SearchBeach />
             </Grid>
             <Divider style={{ margin: "1rem" }} />
+            <Grid container justify="space-evenly">
+              <EventList />
+              <PeopleList />
+            </Grid>
           </Paper>
         </Container>
       </GlobalContext.Provider>

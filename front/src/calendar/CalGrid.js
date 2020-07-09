@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     width: "auto",
     color: theme.palette.text.secondary,
-    transition: "transform 0.5s",
     height: "30rem",
     overflow: "hidden",
     "&:hover": {
@@ -45,7 +44,7 @@ const CalGrid = ({ week, dates, beach }) => {
   const [shadowSat, setshadowSat] = React.useState(3);
   const [shadowSun, setshadowSun] = React.useState(3);
 
-  const [selectTime, setselectTime] = React.useState("______");
+  // const [selectTime, setselectTime] = React.useState("______");
 
   const [dayNum, setdayNum] = React.useState("");
   const [Dates, setDates] = React.useState("");
@@ -59,15 +58,13 @@ const CalGrid = ({ week, dates, beach }) => {
 
   return (
     <div className={classes.root}>
-      <Divider style={{ margin: "1rem" }} />
+      {/* <Divider style={{ margin: "1rem" }} />
       <Paper elevation={10} className={classes.paper}>
-        Time selected is {selectTime}
-        <br />
         Beach selected is {JSON.stringify(beach)}
         <br />
-        {/* <button onClick={() => setGlobal({...global,changed:'hello'})}>CLICK ME!</button>
-        Color from context is {JSON.stringify(global)} */}
-      </Paper>
+        <button onClick={() => setGlobal({...global,changed:'hello'})}>CLICK ME!</button>
+        Color from context is {JSON.stringify(global)}
+      </Paper> */}
       <Divider style={{ margin: "1rem" }} />
       <Grid container spacing={1}>
         <Grid item xs>
@@ -81,10 +78,10 @@ const CalGrid = ({ week, dates, beach }) => {
             elevation={shadowSun}
             className={classes.days}
             id="Sunday-card"
-            onClick={(e) => {
-              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
-              // setselectTime(e.target.id.split("-")[0]);
-            }}
+            // onClick={(e) => {
+            //   if (e.target.id.match('Z"$')) setselectTime(e.target.id);
+            //   // setselectTime(e.target.id.split("-")[0]);
+            // }}
           >
             Sun
             <Divider />
@@ -103,9 +100,6 @@ const CalGrid = ({ week, dates, beach }) => {
             elevation={shadowMon}
             className={classes.days}
             id="Monday-card"
-            onClick={(e) => {
-              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
-            }}
           >
             Mon
             <Divider />
@@ -124,9 +118,6 @@ const CalGrid = ({ week, dates, beach }) => {
             elevation={shadowTue}
             className={classes.days}
             id="Tuesday-card"
-            onClick={(e) => {
-              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
-            }}
           >
             Tues
             <Divider />
@@ -145,9 +136,6 @@ const CalGrid = ({ week, dates, beach }) => {
             elevation={shadowWed}
             className={classes.days}
             id="Wednesday-card"
-            onClick={(e) => {
-              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
-            }}
           >
             Wed
             <Divider />
@@ -166,9 +154,6 @@ const CalGrid = ({ week, dates, beach }) => {
             elevation={shadowThu}
             className={classes.days}
             id="Thursday-card"
-            onClick={(e) => {
-              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
-            }}
           >
             Thurs
             <Divider />
@@ -187,9 +172,6 @@ const CalGrid = ({ week, dates, beach }) => {
             elevation={shadowFri}
             className={classes.days}
             id="Friday-card"
-            onClick={(e) => {
-              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
-            }}
           >
             Fri
             <Divider />
@@ -208,9 +190,6 @@ const CalGrid = ({ week, dates, beach }) => {
             elevation={shadowSat}
             className={classes.days}
             id="Saturday-card"
-            onClick={(e) => {
-              if (e.target.id.match('Z"$')) setselectTime(e.target.id);
-            }}
           >
             Sat
             <Divider />

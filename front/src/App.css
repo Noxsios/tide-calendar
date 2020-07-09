@@ -1,5 +1,5 @@
 h6 {
-  font-family: 'Roboto Slab' !important;
+  font-family: "Roboto Slab" !important;
 }
 
 .mainContainer {
@@ -10,6 +10,14 @@ h6 {
 .mainPaper {
   padding: 1rem;
 }
+
+/* .MuiDialogTitle-root {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+  margin: 0 !important;
+} */
 
 ::-webkit-scrollbar {
   width: 10px;

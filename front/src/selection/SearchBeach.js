@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import SelectDate from "./SelectDate";
+import GlobalContext from "../GlobalContext";
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
@@ -16,6 +17,7 @@ export default function SearchBeach() {
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
   const [beach, setBeach] = React.useState("");
+  const { global, setGlobal } = React.useContext(GlobalContext);
   //   const [inputValue, setInputValue] = React.useState("");
 
   React.useEffect(() => {
@@ -26,9 +28,9 @@ export default function SearchBeach() {
     }
 
     (async () => {
-      const response = await fetch("http://localhost:9002/");
+      const response = await fetch("http://localhost:9002/ListBeaches/");
       const beaches = await response.json();
-      await sleep(1500); // For demo purposes., swapped with above, seeing if that changes performance
+      await sleep(1000); // For demo purposes., swapped with above, seeing if that changes performance
 
       if (active) {
         setOptions(beaches.map((ele) => ele));
@@ -62,7 +64,7 @@ export default function SearchBeach() {
         getOptionLabel={(option) => `[${option.api_id}] ${option.title}`}
         options={options}
         loading={loading}
-        onChange={(e) => setBeach(e.target.innerHTML)}
+        onChange={(e) => {setBeach(e.target.innerHTML); setGlobal({...global,beach:e.target.innerHTML}) }}
         renderInput={(params) => (
           <TextField
             {...params}
