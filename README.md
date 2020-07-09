@@ -4,90 +4,54 @@
 
 ### User Stories
 
-- As a <u>user</u>, I <u>want to add people</u>, so that I can invite people who are not on the list.
+- As a <u>new user</u>, I <u>want to add people</u>, so that I can invite people who are not on the list
 - As a <u>user</u>, I <u>want to select a date</u> and see the tides for that day so that I can plan
 - As a <u>user</u>, I <u>want to select a time</u> on that day so that I can create an event
 - As a <u>user</u>, I <u>want to search for a beach</u> by name
+- As a <u>user</u>, I <u>want to create an event</u> for a chosen beach at a chosen time on a chosen day
 
 ### Database Scheme (MongoDB)
 
 ```javascript
 
-let exampleEvent = {
-  id: `integer`,
-  name: "exampleLast",
-  day: "exampleFirst",
-  timeStart: "exampleTime",
-  timeEnd: "exampleTime",
-  beach: "exampleBeach",
-  apiLink: "exampleLink",
-  people: ["examplePeopleArray"],
-};
-
-let examplePerson = {
-  last_name: "exampleLast",
-  first_name: "exampleFirst",
-  email: "exampleEmail",
-  phone: "examplePhone",
-};
-
-db.person.insert(
-  {
-    last_name: "exampleLast",
-    first_name: "exampleFirst",
-    email: "exampleEmail",
-    phone: "examplePhone",
-  }
-)
-
-let exampleBeach = {
-  id: `integer`,
-  title: "exampleTitle",
-  api_id: "example_api_id",
-};
+// Example Event in Mongo
+// db.event.find().pretty()
+{
+        "_id" : ObjectId("5f077ae43564016f24d95b74"),
+        "title" : "Party at Sandy Hook",
+        "date" : "\"2020-07-05T10:00:00.000Z\"",
+        "people" : [
+                "John Doe",
+                "Matthew Rogerick"
+        ],
+        "beach" : "[417] Sandy Hook"
+}
+// Example Person in Mongo
+// db.person.find().pretty()
+{
+        "_id" : ObjectId("5f0779604409ff6990b2bf98"),
+        "first_name" : "Matthew",
+        "last_name" : "Rogerick",
+        "email" : "fake@gmail.com"
+}
+// Example Beach in Mongo
+// db.calendar.find({api_id:"417"}).pretty()
+{
+        "_id" : ObjectId("5f04d7723a631d5b9284a199"),
+        "api_id" : "417",
+        "title" : "Sandy Hook"
+}
 
 ```
 
 ### File Structure
 
-`/front`
+- `/front` : React Frontend
+- `/back`  : Express Backend
 
-```
-.
-├── README.md
-├── package.json
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── logo192.png
-│   ├── logo512.png
-│   ├── manifest.json
-│   └── robots.txt
-├── src
-│   ├── App.css
-│   ├── App.js
-│   ├── App.test.js
-│   ├── index.css
-│   ├── index.js
-│   ├── logo.svg
-│   ├── serviceWorker.js
-│   └── setupTests.js
-└── yarn.lock
-```
+> In order to replicate, your Mongo instance must have all of the data from **outlinks.json**
+> inserted into your db. Use db.calendar.insertMany(<outlinks.json array here>)
 
-`/back`
-
-```
-.
-├── app.js
-├── bin
-│   └── www
-├── package-lock.json
-├── package.json
-└── routes
-    ├── index.js
-    └── users.js
-```
 
 
 
